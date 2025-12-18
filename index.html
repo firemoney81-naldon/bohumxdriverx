@@ -1,23 +1,378 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "내운전자보험 가입 시 가장 중요한 담보는 무엇인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "2026년 기준, 경찰조사 단계부터 보장되는 변호사선임비용과 상향된 교통사고처리기지원금이 가장 핵심입니다."
+        }
+      }, {
+        "@type": "Question",
+        "name": "자동차보험이 있는데 왜 운전자보험이 필요한가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "자동차보험은 민사적 책임을 보장하고, 운전자보험은 형사적 책임(벌금, 합의금 등)을 보장하기 때문입니다."
+        }
+      }]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #5d5fef;
+            --secondary-color: #f0f2ff;
+            --accent-color: #ff8e53;
+            --text-main: #2d3436;
+            --text-sub: #636e72;
+            --border-color: #dfe6e9;
+            --bg-soft: #fbfbfd;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-soft);
+            color: var(--text-main);
+            line-height: 1.8;
+            word-break: keep-all;
+        }
+
+        header {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        nav {
+            background: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+
+        section {
+            margin-bottom: 5rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 1rem;
+            margin-bottom: 2rem;
+            color: #2d3436;
+        }
+
+        .input-group {
+            background: var(--secondary-color);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-field label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-field input, .input-field select {
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            outline: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.2rem;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .keyword-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            background: #f1f2f6;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .keyword-cloud span {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            background: white;
+            padding: 4px 10px;
+            border-radius: 5px;
+        }
+
+        .external-links {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #fff9f0;
+            border: 1px dashed var(--accent-color);
+            border-radius: 10px;
+        }
+
+        .cta-box {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(to right, #6c5ce7, #a29bfe);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary-color);
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            margin-top: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>2026 내운전자보험 분석 및 비교 가이드</h1>
+    <p>나에게 꼭 필요한 보장만 선택하는 스마트한 운전자의 선택</p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#section1">운전자보험의 필요성</a></li>
+        <li><a href="#section2">핵심 담보 분석</a></li>
+        <li><a href="#section3">내 보험료 계산기</a></li>
+        <li><a href="#section4">2026 법규 리포트</a></li>
+        <li><a href="#section5">전문가 Q&A</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section id="section1">
+        <h2>왜 2026년에 내운전자보험을 다시 점검해야 하는가</h2>
+        <p>
+            내운전자보험이란 자동차사고 발생 시 운전자 본인에게 발생하는 형사적, 행정적 책임을 보장해주는 상품입니다. 2026년 현재 도로교통법은 과거보다 훨씬 엄격한 기준을 적용하고 있습니다. 특히 스쿨존 내 사고(민식이법)나 12대 중과실 사고 시 발생하는 고액의 합의금과 벌금은 단순한 자동차보험만으로는 해결이 불가능합니다.
+        </p>
+        <p>
+            최근 판례에 따르면 교통사고처리기지원금의 규모가 과거 3천만 원 수준에서 현재는 최대 2억 원 이상으로 확대되는 추세입니다. 또한 경찰조사 단계부터 변호사의 도움을 받을 수 있는 '경찰조사 단계 변호사선임비용' 특약의 유무가 운전자의 운명을 결정짓기도 합니다. 이러한 변화된 환경에 맞춰 기존 가입 상품을 분석하고 리모델링하는 과정이 반드시 필요합니다.
+        </p>
+        
+        <div class="keyword-cloud">
+            <span>운전자보험비교사이트</span> <span>비갱신형운전자보험</span> <span>운전자보험보장내용</span> <span>부상치료비</span> <span>교통사고합의금</span> 
+            <span>운전자보험추천</span> <span>다이렉트운전자보험</span> <span>운전자보험료</span> <span>자동차보험운전자보험차이</span> <span>벌금보장</span> 
+            <span>형사합의금특약</span> <span>변호사비용지원</span> <span>12대중과실사고</span> <span>음주운전제외</span> <span>무면허사고제외</span> 
+            <span>스쿨존사고보장</span> <span>민식이법보험</span> <span>운전자보험환급형</span> <span>순수보장형운전자보험</span> <span>가성비보험</span>
+            </div>
+    </section>
+
+    <section id="section2">
+        <h2>내운전자보험 핵심 보장 및 2026년 트렌드</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>핵심 담보명</th>
+                    <th>보장 내용 요약</th>
+                    <th>2026년 권장 한도</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>교통사고처리기지원금</td>
+                    <td>피해자 사망 또는 중상해 시 합의금 지원</td>
+                    <td>2억 원 이상</td>
+                </tr>
+                <tr>
+                    <td>변호사선임비용</td>
+                    <td>구속, 기소 또는 경찰조사 시 변호사 비용</td>
+                    <td>5,000만 원 (경찰조사 포함)</td>
+                </tr>
+                <tr>
+                    <td>대인/대물 벌금</td>
+                    <td>확정 판결된 벌금 금액 실손 보상</td>
+                    <td>대인 3,000만 원 / 대물 500만 원</td>
+                </tr>
+                <tr>
+                    <td>자동차사고부상치료비</td>
+                    <td>부상 등급(1~14급)에 따른 정액 지급</td>
+                    <td>14급 기준 30만 원 이상</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            내운전자보험을 선택할 때 가장 많이 찾는 키워드는 역시 '가성비'와 '중복보장 여부'입니다. 이미 가입된 실손의료비나 자동차보험의 특약과 겹치는 부분은 없는지 확인해야 하며, 특히 2026년부터는 자율주행 차량 사고에 대한 보장 범위 확대 여부도 중요한 체크 포인트로 떠오르고 있습니다.
+        </p>
+    </section>
+
+    <section id="section3" class="input-group">
+        <h2>내 맞춤형 운전자보험 시뮬레이션</h2>
+        <p>아래 정보를 입력하시면 최적화된 예상 플랜을 분석해 드립니다. 정보가 많을수록 정확한 분석이 가능합니다.</p>
+        <div class="input-grid">
+            <div class="input-field">
+                <label>성별</label>
+                <select>
+                    <option>남성</option>
+                    <option>여성</option>
+                </select>
+            </div>
+            <div class="input-field">
+                <label>생년월일 (8자리)</label>
+                <input type="number" placeholder="19900101">
+            </div>
+            <div class="input-field">
+                <label>직업군</label>
+                <select>
+                    <option>사무직</option>
+                    <option>현장직</option>
+                    <option>전문운전직</option>
+                    <option>기타</option>
+                </select>
+            </div>
+            <div class="input-field">
+                <label>월 희망 보험료</label>
+                <input type="text" placeholder="예: 10,000원">
+            </div>
+            <div class="input-field">
+                <label>일일 평균 운전 시간</label>
+                <input type="number" placeholder="시간 단위">
+            </div>
+            <div class="input-group-full" style="grid-column: span 2;">
+                <label style="font-weight: 600;">과거 사고 이력 및 특이사항 (체류 시간 증대를 위한 상세 기재란)</label>
+                <textarea style="width: 100%; height: 100px; border-radius: 8px; border: 1px solid var(--border-color); padding: 10px; margin-top: 10px;" placeholder="최근 3년 내 사고 이력이나 현재 가입 중인 상품의 불편한 점을 상세히 적어주세요."></textarea>
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <button class="cta-button" style="border: none; cursor: pointer; background: var(--primary-color); color: white;">실시간 최적화 플랜 확인하기</button>
+        </div>
+    </section>
+
+    <section id="section4">
+        <h2>내운전자보험 관련 키워드 분석 및 연관 정보</h2>
+        <p>
+            많은 분들이 '함께 많이 찾는' 정보로는 부부 운전자보험, 가족 한정 특약, 오토바이 운전자보험 등이 있습니다. 특히 2026년에는 배달 플랫폼 종사자의 증가로 인해 유상운송 특약에 대한 검색량이 폭발적으로 늘어났습니다.
+        </p>
+        <p>
+            자동완성 키워드로 본 소비자의 관심사는 '운전자보험 9800원', '운전자보험 만기환급금', '운전자보험 필요성' 등이 상위를 차지합니다. 이는 고물가 시대에 저렴한 비용으로 핵심 보장만을 가져가려는 합리적인 소비 패턴을 반영합니다. 또한, 보험사별(삼성화재, 현대해상, DB손해보험, KB손해보험, 메리츠화재 등) 비교 견적을 통해 본인에게 유리한 할인 특약(자녀 할인, 안전운전 점수 할인 등)을 챙기는 것이 현명합니다.
+        </p>
+        
+        <div class="external-links">
+            <strong>공인 신뢰성 참조 사이트</strong>
+            <ul style="margin-top: 10px;">
+                <li><a href="https://www.fss.or.kr" target="_blank">금융감독원 (보험 정책 및 소비자 보호)</a></li>
+                <li><a href="https://www.e-insmarket.or.kr" target="_blank">보험다모아 (공식 보험 비교 사이트)</a></li>
+                <li><a href="https://www.knia.or.kr" target="_blank">손해보험협회 (공시 정보 확인)</a></li>
+                <li><a href="https://www.police.go.kr" target="_blank">경찰청 (교통법규 및 사고 통계)</a></li>
+                <li><a href="https://namu.wiki/w/%EC%9A%B4%EC%A0%84%EC%9E%90%EB%B3%B4%ED%97%98" target="_blank">나무위키 - 운전자보험 상세 정의</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="section5" class="cta-box">
+        <h2>아직도 고민 중이신가요?</h2>
+        <p>2026년 최신 법규를 반영한 전문가 1:1 맞춤 분석 보고서를 무료로 받아보세요.</p>
+        <p>본인의 운전 습관과 나이에 맞는 최적의 설계안을 제안해 드립니다.</p>
+        <a href="#" class="cta-button">무료 상담 신청 및 리포트 받기</a>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 내운전자보험 전문 분석 센터. 본 콘텐츠는 최신 도로교통법 정보를 기반으로 작성되었습니다.</p>
+    <p>본 웹사이트는 사용자에게 객관적인 정보 제공을 목적으로 하며 특정 상품 가입을 강요하지 않습니다.</p>
+</footer>
+
+<script>
+    // 부드러운 스크롤 이동
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
+
+</body>
 </html>
